@@ -56,7 +56,7 @@ const TicketDetailsPage = async (props: {
 					← Back to Tickets
 				</Link>
 
-				{ticket.status === 'closed' && (
+				{ticket.status !== 'closed' && (
 					<CloseTicketButton
 						ticketId={ticket.id}
 						isClosed={ticket.status === 'closed'} 
