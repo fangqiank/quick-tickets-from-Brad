@@ -25,6 +25,8 @@ export const CloseTicketButton = (props: Props) => {
 		}
 	}, [state])
 
+	// console.log(props);
+
 	if(props.isClosed)
 		return null
 
