@@ -144,7 +144,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\myProj\\React\\nextjs-learning\\quick-ticket\\app\\generated\\prisma",
+      "value": "D:\\myProj\\React\\nextjs-learning\\quick-ticket\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -162,10 +162,10 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": "../../.env",
+    "schemaEnvPath": "../../.env"
   },
-  "relativePath": "../../../prisma",
+  "relativePath": "../../prisma",
   "clientVersion": "6.7.0",
   "engineVersion": "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed",
   "datasourceNames": [
@@ -181,8 +181,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  name      String?\n  email     String   @unique\n  password  String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  tickets   Ticket[]\n}\n\nmodel Ticket {\n  id          Int      @id @default(autoincrement())\n  subject     String\n  description String\n  status      String   @default(\"open\")\n  priority    String\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n  userId      String\n  user        User     @relation(fields: [userId], references: [id])\n}\n",
-  "inlineSchemaHash": "221690bac4869ddea69330262a8005d150bc6aacf570add4fa1c16746a747374",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  // binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  name      String?\n  email     String   @unique\n  password  String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  tickets   Ticket[]\n}\n\nmodel Ticket {\n  id          Int      @id @default(autoincrement())\n  subject     String\n  description String\n  status      String   @default(\"open\")\n  priority    String\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n  userId      String\n  user        User     @relation(fields: [userId], references: [id])\n}\n",
+  "inlineSchemaHash": "d3030de46277827eca0c5fab48ee5913892f8ce89a60171a7555c0504eca4bb7",
   "copyEngine": true
 }
 
@@ -191,8 +191,8 @@ const fs = require('fs')
 config.dirname = __dirname
 if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
   const alternativePaths = [
-    "app/generated/prisma",
     "generated/prisma",
+    "prisma",
   ]
   
   const alternativePath = alternativePaths.find((altPath) => {
@@ -222,7 +222,7 @@ Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
-path.join(process.cwd(), "app/generated/prisma/query_engine-windows.dll.node")
+path.join(process.cwd(), "generated/prisma/query_engine-windows.dll.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
-path.join(process.cwd(), "app/generated/prisma/schema.prisma")
+path.join(process.cwd(), "generated/prisma/schema.prisma")
